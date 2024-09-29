@@ -1,0 +1,54 @@
+bundle:
+  name: forecasting_promo
+
+# Declare to Databricks Assets Bundles that this is a Python project
+# This is the interaction with the "pyproject.toml" file
+artifacts:
+  default:
+    type: whl
+    build: poetry build
+    path: .
+
+resources:
+  jobs:
+    forecasting_promo:
+      name: forecasting_promo
+      job_clusters:
+        - job_cluster_key: ${bundle.target}-${bundle.name}-job-cluster
+          new_cluster:
+                num_workers: 2
+                spark_version: "15.3.x-cpu-ml-scala2.12"  
+                node_type_id: Standard_DS3_v2      
+      tasks:
+        - task_key: pipeline_forecasting
+          job_cluster_key: ${bundle.target}-${bundle.name}-job-cluster
+          # existing_cluster_id: 0403-131312-ut6kacid
+          python_wheel_task:
+             package_name: forecasting_promo
+             entry_point: pipeline_forecasting
+          libraries:
+            - whl: ./dist/*.whl
+      permissions:
+        - group_name: "data-scientist"
+          level: "CAN_MANAGE"
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace: 
+      host: https://adb-3620744836217381.1.azuredatabricks.net
+    run_as:
+      service_principal_name: 54fe3d5e-14f1-4f86-93c9-f8a53f21ebf1
+    resources:
+      jobs:
+        forecasting_promo:
+          job_clusters:
+            - job_cluster_key: ${bundle.target}-${bundle.name}-job-cluster
+              new_cluster:
+                num_workers: 2
+                spark_version: "15.3.x-cpu-ml-scala2.12"  
+                node_type_id: Standard_DS3_v2
+          permissions:
+          - group_name: "data-scientist"
+            level: "CAN_MANAGE"
