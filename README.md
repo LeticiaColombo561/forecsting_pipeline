@@ -57,8 +57,7 @@ El proyecto está dividido en los siguientes scripts:
 1. Clona el repositorio:
 
    ```bash
-   git clone https://cencosud-fidelidad-rd@dev.azure.com/cencosud-fidelidad-rd/pe-sm-pricing-promocional/_git/Forecast
-   cd cencosud-fidelidad-rd/pe-sm-pricing-promocional/Repo/Files/Forecast
+   git clone https://github.com/LeticiaColombo561/forecsting_pipeline
 
    ```
 
@@ -73,5 +72,5 @@ El proyecto está dividido en los siguientes scripts:
    ```
 4. Ejecuta el pipeline:
    ```bash
-   python run_pipeline.py --config launch_config.json
+   python run_pipeline.py
    ```
