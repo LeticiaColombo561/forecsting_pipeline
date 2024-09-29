@@ -1,0 +1,12 @@
+# The main pipeline for forecasting_promocional
+resources:
+  pipelines:
+    forecasting_promocional_pipeline:
+      name: forecasting_promocional_pipeline
+      target: forecasting_promocional_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: /Workspace/${workspace.file_path}/src
