@@ -47,9 +47,7 @@ El proyecto está dividido en los siguientes scripts:
    - **Salidas**: Archivos con los coeficientes y métricas del modelo.
 
 5. **run_pipeline.py**:
-   - **Función**: Ejecuta los tres scripts anteriores en secuencia, utilizando un archivo de configuración (`launch_config.json`) que define los parámetros necesarios para cada script.
-   - **Entradas**:
-     - `launch_config.json`: Archivo de configuración para todo el pipeline.
+   - **Función**: Ejecuta los tres scripts anteriores en secuencia.d
    - **Salidas**: Resultados del preprocesamiento, predicción, y guardado de betas.
 
 ## Instalación
